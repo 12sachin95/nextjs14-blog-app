@@ -8,7 +8,6 @@ const Navigationtest = () => {
   const searchParams = useSearchParams();
 
   const handleClick = () => {
-    console.log("==clicked");
     router.push("/");
 
     //to get query params and setparams

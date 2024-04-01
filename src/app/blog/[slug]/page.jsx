@@ -24,27 +24,24 @@ const SingleBlogPage = async ({ params }) => {
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
-        <Image src="/post.png" alt="post" fill className={styles.img}></Image>
+        <Image src={post.img} alt="post" fill className={styles.img}></Image>
       </div>
       <div className={styles.textContainer}>
         <h1 className={styles.title}>{post.title}</h1>
         <div className={styles.detail}>
-          <Image
-            className={styles.avatar}
-            src="/noavatar.png"
-            alt="post"
-            width={50}
-            height={50}
-          ></Image>
-          <Suspense fallback={<div>Loading...</div>}>
-            <PostUser userId={post.userId} />
-          </Suspense>
+          {post && (
+            <Suspense fallback={<div>Loading...</div>}>
+              <PostUser userId={post.userId} />
+            </Suspense>
+          )}
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
-            <span className={styles.detailValue}>01.01.20022</span>
+            <span className={styles.detailValue}>
+              {post.createdAt.toString().slice(0, 16)}
+            </span>
           </div>
         </div>
-        <div className={styles.content}>{post.body}</div>
+        <div className={styles.content}>{post.desc}</div>
       </div>
     </div>
   );

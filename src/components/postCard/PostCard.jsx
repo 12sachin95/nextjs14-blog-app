@@ -7,14 +7,16 @@ const PostCard = ({ post }) => {
     <div className={styles.container}>
       <div className={styles.top}>
         <div className={styles.imgContainer}>
-          <Image src="/post.png" alt="" fill className={styles.img} />
+          <Image src={post.img} alt="" fill className={styles.img} />
         </div>
-        <span className={styles.date}>01.01.2024</span>
+        <span className={styles.date}>
+          {post.createdAt.toString().slice(0, 16)}
+        </span>
       </div>
       <div className={styles.bottom}>
         <h1 className={styles.title}>{post.title}</h1>
-        <p className={styles.desc}>{post.body}</p>
-        <Link href={`/blog/${post.id}`} className={styles.link}>
+        <p className={styles.desc}>{post.desc}</p>
+        <Link href={`/blog/${post.slug}`} className={styles.link}>
           Read more
         </Link>
       </div>

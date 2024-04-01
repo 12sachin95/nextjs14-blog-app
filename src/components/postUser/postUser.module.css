@@ -1,7 +1,12 @@
-.detailText {
+.texts {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+.detailText {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 .detailTitle {
   color: gray;
@@ -10,4 +15,8 @@
 
 .detailValue {
   font-weight: 500;
+}
+.avatar {
+  object-fit: cover;
+  border-radius: 50%;
 }

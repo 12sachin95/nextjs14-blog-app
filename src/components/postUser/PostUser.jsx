@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./postUser.module.css";
 import { getUser } from "@/lib/data";
+import Image from "next/image";
 
 //dummy api endpoint
 // const getUser = async (userId) => {
@@ -22,8 +23,17 @@ const PostUser = async ({ userId }) => {
 
   return (
     <div className={styles.detailText}>
-      <span className={styles.detailTitle}>Author</span>
-      <span className={styles.detailValue}>{user.name}</span>
+      <Image
+        src={user?.img ? user?.img : "/noavatar.png"}
+        className={styles.avatar}
+        alt="avatar"
+        width={50}
+        height={50}
+      ></Image>
+      <div className={styles.texts}>
+        <span className={styles.detailTitle}>Author</span>
+        <span className={styles.detailValue}>{user.userName}</span>
+      </div>
     </div>
   );
 };
