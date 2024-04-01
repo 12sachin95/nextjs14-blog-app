@@ -14,6 +14,11 @@ import { getPosts } from "@/lib/data";
 //   return res.json();
 // };
 
+export const metadata = {
+  title: "Blog App | Blog list page",
+  description: "Blog app by using nextjs 14",
+};
+
 const BlogPage = async () => {
   const posts = await getPosts();
   return (

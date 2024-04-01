@@ -5,7 +5,7 @@ const Footer = () => {
     <div className={styles.container}>
       <div className={styles.logo}>Blogs Company</div>
       <div className={styles.text}>
-        Creative thoughts agency All rights reserved.
+        Creative thoughts agency &#169; All rights reserved.
       </div>
     </div>
   );

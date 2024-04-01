@@ -18,6 +18,19 @@ import { getPost } from "@/lib/data";
 //   }
 //   return res.json();
 // };
+export const generateMetadata = async ({ params }) => {
+  const { slug } = params;
+  const post = await getPost(slug);
+
+  return {
+    title: post.title,
+    description: post.desc,
+  };
+};
+export const metadata = {
+  title: "Blog page ",
+  description: "Blog app by using nextjs 14",
+};
 
 const SingleBlogPage = async ({ params }) => {
   const post = await getPost(params.slug);

@@ -37,15 +37,19 @@
 
 import { connectToDb } from "./connectToDb";
 import { Post, User } from "./model";
+import { unstable_noStore as noStore } from "next/cache";
 
 // get all users
 export const getUsers = async () => {
+  //to control caching in api call
+  noStore();
   connectToDb();
   try {
     const response = await User.find();
     return response;
   } catch (error) {
-    throw new Error(error);
+    console.log("==error", error);
+    // throw new Error(error);
   }
 };
 //get a single user by its ID
@@ -55,7 +59,9 @@ export const getUser = async (id) => {
     const response = await User.findById(id);
     return response;
   } catch (error) {
-    throw new Error(error);
+    console.log("==error", error);
+
+    // throw new Error(error);
   }
 };
 
@@ -66,7 +72,9 @@ export const getPosts = async () => {
     const response = await Post.find();
     return response;
   } catch (error) {
-    throw new Error(error);
+    console.log("==error", error);
+
+    // throw new Error(error);
   }
 };
 
@@ -77,6 +85,8 @@ export const getPost = async (slug) => {
     const response = await Post.findOne({ slug });
     return response;
   } catch (error) {
-    throw new Error(error);
+    console.log("==error", error);
+
+    // throw new Error(error);
   }
 };
