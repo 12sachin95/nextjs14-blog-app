@@ -48,7 +48,6 @@ export const getUsers = async () => {
     const response = await User.find();
     return response;
   } catch (error) {
-    console.log("==error", error);
     // throw new Error(error);
   }
 };
@@ -59,8 +58,6 @@ export const getUser = async (id) => {
     const response = await User.findById(id);
     return response;
   } catch (error) {
-    console.log("==error", error);
-
     // throw new Error(error);
   }
 };
@@ -72,8 +69,6 @@ export const getPosts = async () => {
     const response = await Post.find();
     return response;
   } catch (error) {
-    console.log("==error", error);
-
     // throw new Error(error);
   }
 };
@@ -85,8 +80,6 @@ export const getPost = async (slug) => {
     const response = await Post.findOne({ slug });
     return response;
   } catch (error) {
-    console.log("==error", error);
-
     // throw new Error(error);
   }
 };

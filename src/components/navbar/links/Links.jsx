@@ -27,8 +27,6 @@ const LinksList = [
 const Links = ({ session }) => {
   const [open, setOpen] = useState(false);
 
-  console.log(session);
-
   return (
     <>
       <div className={styles.container}>

@@ -7,7 +7,6 @@ const getPostsData = async () => {
     // cache: "no-store", // by default cache on but if we want latest ddata on each request then we can use this option
     next: { revalidate: 3600 },
   });
-  console.log(res);
   if (!res.ok) {
     throw new Error("Something went wrong.");
   }
