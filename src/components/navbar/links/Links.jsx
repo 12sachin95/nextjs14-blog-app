@@ -3,30 +3,31 @@ import React, { useState } from "react";
 import styles from "./links.module.css";
 import NavLink from "./navLink/navLink";
 import Image from "next/image";
+import { handleLogout } from "@/lib/actions";
 
-const Links = () => {
+const LinksList = [
+  {
+    title: "Home",
+    path: "/",
+  },
+  {
+    title: "About",
+    path: "/about",
+  },
+  {
+    title: "Contact",
+    path: "/contact",
+  },
+  {
+    title: "Blogs",
+    path: "/blog",
+  },
+];
+
+const Links = ({ session }) => {
   const [open, setOpen] = useState(false);
-  const LinksList = [
-    {
-      title: "Home",
-      path: "/",
-    },
-    {
-      title: "About",
-      path: "/about",
-    },
-    {
-      title: "Contact",
-      path: "/contact",
-    },
-    {
-      title: "Blogs",
-      path: "/blog",
-    },
-  ];
 
-  const session = true;
-  const isAdmin = true;
+  console.log(session);
 
   return (
     <>
@@ -35,10 +36,14 @@ const Links = () => {
           {LinksList.map((link) => {
             return <NavLink link={link} key={link.title} />;
           })}
-          {session ? (
+          {session?.user ? (
             <>
-              {isAdmin && <NavLink link={{ title: "Admin", path: "/admin" }} />}
-              <button className={styles.logout}>Logout</button>{" "}
+              {session.user?.isAdmin && (
+                <NavLink link={{ title: "Admin", path: "/admin" }} />
+              )}
+              <form action={handleLogout}>
+                <button className={styles.logout}>Logout</button>{" "}
+              </form>
             </>
           ) : (
             <NavLink link={{ title: "Login", path: "/login" }} />

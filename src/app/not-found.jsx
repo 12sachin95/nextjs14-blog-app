@@ -6,7 +6,11 @@ const NotFound = () => {
       <h2>Not Found</h2>
       <p>
         Sorry, the page your are looking for does not exist. Please go back to
-        <Link href="/">homepage</Link>.
+        {"  "}
+        <Link href="/" style={{ textDecoration: "underline" }}>
+          homepage
+        </Link>
+        .
       </p>
     </div>
   );

@@ -32,7 +32,7 @@ const PostUser = async ({ userId }) => {
       ></Image>
       <div className={styles.texts}>
         <span className={styles.detailTitle}>Author</span>
-        <span className={styles.detailValue}>{user.userName}</span>
+        <span className={styles.detailValue}>{user.username}</span>
       </div>
     </div>
   );
