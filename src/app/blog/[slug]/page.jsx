@@ -2,38 +2,41 @@ import Image from "next/image";
 import styles from "./singlePost.module.css";
 import PostUser from "@/components/postUser/PostUser";
 import { Suspense } from "react";
-import { getPost } from "@/lib/data";
+// import { getPost } from "@/lib/data";
 
-// dummy api endpoint
-// const getPost = async (slug) => {
-//   const res = await fetch(
-//     `https://jsonplaceholder.typicode.com/posts/${slug}`,
-//     {
-//       // cache: "no-store", // by default cache on but if we want latest ddata on each request then we can use this option
-//       next: { revalidate: 3600 },
-//     }
-//   );
-//   if (!res.ok) {
-//     throw new Error("Something went wrong.");
-//   }
-//   return res.json();
-// };
+const getPostData = async (slug) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${slug}`, {
+    // cache: "no-store", // by default cache on but if we want latest ddata on each request then we can use this option
+    next: { revalidate: 3600 },
+  });
+  if (!res.ok) {
+    throw new Error("Something went wrong.");
+  }
+  return res.json();
+};
 export const generateMetadata = async ({ params }) => {
   const { slug } = params;
-  const post = await getPost(slug);
+  const post = await getPostData(slug);
+
+  // FETCH without api
+  // const post = await getPost(slug);
 
   return {
     title: post.title,
     description: post.desc,
   };
 };
-export const metadata = {
-  title: "Blog page ",
-  description: "Blog app by using nextjs 14",
-};
+// export const metadata = {
+//   title: "Blog page ",
+//   description: "Blog app by using nextjs 14",
+// };
 
 const SingleBlogPage = async ({ params }) => {
-  const post = await getPost(params.slug);
+  const post = await getPostData(params.slug);
+
+  // FETCH without api
+  // const post = await getPost(slug);
+
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>

@@ -1,18 +1,18 @@
 import PostCard from "@/components/postCard/PostCard";
 import styles from "./blog.module.css";
-import { getPosts } from "@/lib/data";
+// import { getPosts } from "@/lib/data";
 
-// dummy api endpoint
-// const getPosts = async () => {
-//   const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
-//     // cache: "no-store", // by default cache on but if we want latest ddata on each request then we can use this option
-//     next: { revalidate: 3600 },
-//   });
-//   if (!res.ok) {
-//     throw new Error("Something went wrong.");
-//   }
-//   return res.json();
-// };
+const getPostsData = async () => {
+  const res = await fetch("http://localhost:3000/api/blog", {
+    // cache: "no-store", // by default cache on but if we want latest ddata on each request then we can use this option
+    next: { revalidate: 3600 },
+  });
+  console.log(res);
+  if (!res.ok) {
+    throw new Error("Something went wrong.");
+  }
+  return res.json();
+};
 
 export const metadata = {
   title: "Blog App | Blog list page",
@@ -20,7 +20,12 @@ export const metadata = {
 };
 
 const BlogPage = async () => {
-  const posts = await getPosts();
+  //FETCh data with api
+  const posts = await getPostsData();
+
+  //FETCh data without api
+  // const posts = await getPosts();
+
   return (
     <div className={styles.container}>
       {posts.map((post) => {
